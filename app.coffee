@@ -7,10 +7,17 @@ mongoose = require 'mongoose'
 settings = require './lib/settings'
 errors   = require './lib/error-handler'
 google   = require 'googleapis'
+imgur    = require './lib/imgur'
+
+
 
 console.log "\n\nStarting in mode:", app.settings.env
 
 app.config = process.env
+
+app.imgur = imgur(process.env.IMGUR_CLIENT_ID)
+
+app.google = google
 
 mongoose.connection.on 'open', ()->
 
@@ -30,7 +37,6 @@ mongoose.connection.on 'open', ()->
 
   # Configuration
   settings.boot(app);
-
 
   # Error Handler
   errors.boot(app)
@@ -57,7 +63,14 @@ mongoose.connection.on 'open', ()->
 
   # Start the app by listening on <port>
   server = app.listen port
-  console.log "Express-Boilerplate started on port #{port}"
+  console.log "IMGUR pusher started on port #{port}"
+
+
+
+  # Send Service
+  require('./lib/send-service')(app)
+
+
 
 
 mongoose.connect app.config.MONGOHQ_URL||'mongpo'

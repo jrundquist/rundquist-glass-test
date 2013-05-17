@@ -1,4 +1,3 @@
-_         = require 'underscore'
 everyauth = require 'everyauth'
 fs        = require 'fs'
 helpers   = require './helpers'
