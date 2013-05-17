@@ -57,6 +57,11 @@ exports = module.exports = (app) ->
                   <section>\n\
                     <p class=\"text-auto-size\">#{image.title}</p>\n\
                   </section>\n\
+                  <footer>\n\
+                    <div>\
+                      <img src=\"http://s.imgur.com/images/imgurlogo-header.png\">\
+                    </div>\n\
+                  </footer>
                 </article>\n"
               menuItems: [
                 {
