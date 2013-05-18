@@ -87,6 +87,7 @@ exports.bootEveryauth = (app) =>
     .scope(
       [
         'https://www.googleapis.com/auth/glass.timeline'
+        'https://www.googleapis.com/auth/glass.location'
         'https://www.googleapis.com/auth/userinfo.profile'
       ].join ' '
     )

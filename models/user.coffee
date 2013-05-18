@@ -32,8 +32,23 @@ UserSchema.virtual('name')
     @.lastName = p[1]
   )
 
+UserSchema.method('credentials', (app) ->
+    oauth2Client = new app.google.OAuth2Client(
+      process.env.GOOGLE_CLIENT_ID,
+      process.env.GOOGLE_CLIENT_SECRET,
+      process.env.GOOGLE_REDIRECT_URL);
+    oauth2Client.credentials =
+      token_type: @.token_type
+      access_token: @.token,
+      refresh_token: @.refresh_token
+    oauth2Client
+  )
+
+
 UserSchema.pre 'save', (next) ->
     next()
+
+
 
 
 

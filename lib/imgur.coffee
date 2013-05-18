@@ -43,9 +43,19 @@ class Imgur
         'Authorization': @.authHeader
       json: true
 
-    request.get req_opts, callback
+    request.get req_opts, (err, req, body) ->
+      callback(err, body.data || [])
 
 
+
+  getGalleryComments: (imageId, callback=(()->)) ->
+    req_opts =
+      uri: "#{api_url}/gallery/#{imageId}/comments"
+      headers:
+        'Authorization': @.authHeader
+      json: true
+    request.get req_opts, (err, req, body) ->
+      callback(err, body.data || [])
 
   upload: (file, callback) ->
     req_opts =
