@@ -1,7 +1,7 @@
 exports = module.exports = (app) ->
   # Home
   app.get '/imgur', (req, res) ->
-    app.imgur.getGallery (err, gallery) ->
+    app.imgur.getGallery 'hot', 'time', (err, gallery) ->
       i = 0
       while gallery[i].is_album is true
         i++
